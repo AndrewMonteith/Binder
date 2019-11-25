@@ -1,0 +1,14 @@
+.star {
+    max-width: 25px;
+}
+
+.rating {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
+
+#recommended-books {
+    max-height: 460px;
+    overflow-y: scroll;
+}

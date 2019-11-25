@@ -1,6 +1,6 @@
 import pandas as pd
 
-from pandas_helpers import create_meand_df
+from recommender.pandas_helpers import create_meand_df
 
 ratings = pd.read_csv("Dataset/ratings.csv")
 
@@ -27,18 +27,18 @@ def compute_predicted_values(user_id):
 
         is_bt_pos = book_tendency > 0
 
-        def store_result(value):
+        def store(value):
             predicted_values[book_id] = value
 
         if is_ut_pos and is_bt_pos:
-            store_result(max(user_mean + book_tendency, book_mean + user_tendency))
+            store(max(user_mean + book_tendency, book_mean + user_tendency))
         elif not (is_ut_pos or is_bt_pos):
-            store_result(min(user_mean + book_tendency, book_mean + user_tendency))
+            store(min(user_mean + book_tendency, book_mean + user_tendency))
         elif (not is_ut_pos) and is_bt_pos and user_mean < book_mean:
             x = (book_mean + user_tendency) * b + (user_mean + book_tendency) * (1-b)
-            store_result(min(max(user_mean, x), book_mean))
+            store(min(max(user_mean, x), book_mean))
         elif (user_mean > book_mean) and (not is_ut_pos) and is_ut_pos:
-            store_result(b * book_mean + (1-b) * user_mean)
+            store(b * book_mean + (1-b) * user_mean)
 
     return pd.DataFrame(list(predicted_values.items()), columns=["book_id", "predicted"]).set_index("book_id")
 

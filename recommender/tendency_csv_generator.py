@@ -7,7 +7,7 @@
 """
 
 import pandas as pd
-from pandas_helpers import create_meand_df
+from recommender.pandas_helpers import create_meand_df
 
 ratings = pd.read_csv("Dataset/ratings.csv")
 
