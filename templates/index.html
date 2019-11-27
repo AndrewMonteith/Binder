@@ -24,10 +24,21 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ml-auto" id="navbarList">
                     <li class="nav-item active">
-                        <a class="nav-link" id="login-link" href="#">Login
+                        <a class="nav-link" id="register" href="#">
+                            Register
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" id="navbar-login" data-toggle="modal" data-target="#modalLoginForm"
+                            href="#">Login
                             <span class="sr-only">(current)</span>
+                        </a>
+                    </li>
+                    <li class="nav-item active">
+                        <a class="nav-link" id="navbar-logout" href="#">
+                            Logout
                         </a>
                     </li>
                 </ul>
@@ -42,232 +53,75 @@
                 <h2 class="mt-2">Find books you'd never expect to like!</h2>
                 <p class="lead mt-1">We think you'd like these 3 books</p>
 
-                <div id="recommended-books">
-                    <div class="container">
-                        <div class="row mb-2 new-recommendation">
-                            <div class="col-2">
-                                <img
-                                    src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" />
-                            </div>
-
-                            <div class="col text-left ml-1">
-                                <div>
-                                    <b>Name</b> goes here
-                                    <br />
-                                    <b>Description: </b>Box Set containing Harry Potter and the Sorcerer's Stone, Harry
-                                    Potter and the Chamber Of Secrets, Harry Potter and the Prisoner of Azkaban, Harry
-                                    Potter and the Goblet Of Fire, and Harry Potter and the Order of the Phoenix!
-                                </div>
-                                <br />
-                                <div class="rating">
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-2 new-recommendation">
-                            <div class="col-2">
-                                <img
-                                    src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" />
-                            </div>
-
-                            <div class="col text-left ml-1">
-                                <div>
-                                    <b>Name</b> goes here
-                                    <br />
-                                    <b>Description: </b>Box Set containing Harry Potter and the Sorcerer's Stone, Harry
-                                    Potter and the Chamber Of Secrets, Harry Potter and the Prisoner of Azkaban, Harry
-                                    Potter and the Goblet Of Fire, and Harry Potter and the Order of the Phoenix!
-                                </div>
-                                <br />
-                                <div class="rating">
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-2 new-recommendation">
-                            <div class="col-2">
-                                <img
-                                    src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" />
-                            </div>
-
-                            <div class="col text-left ml-1">
-                                <div>
-                                    <b>Name</b> goes here
-                                    <br />
-                                    <b>Description: </b>Box Set containing Harry Potter and the Sorcerer's Stone, Harry
-                                    Potter and the Chamber Of Secrets, Harry Potter and the Prisoner of Azkaban, Harry
-                                    Potter and the Goblet Of Fire, and Harry Potter and the Order of the Phoenix!
-                                </div>
-                                <br />
-                                <div class="rating">
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row mb-2 new-recommendation">
-                            <div class="col-2">
-                                <img
-                                    src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" />
-                            </div>
-
-                            <div class="col text-left ml-1">
-                                <div>
-                                    <b>Name</b> goes here
-                                    <br />
-                                    <b>Description: </b>Box Set containing Harry Potter and the Sorcerer's Stone, Harry
-                                    Potter and the Chamber Of Secrets, Harry Potter and the Prisoner of Azkaban, Harry
-                                    Potter and the Goblet Of Fire, and Harry Potter and the Order of the Phoenix!
-                                </div>
-                                <br />
-                                <div class="rating">
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                    <img src="/static/images/whitestar.png" class="star" />
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
+                <div class="container" id="recommended-books">
                 </div>
 
-                <div id="rated-books">
+                <div>
                     <h2 class="mt-2">Remove or edit previous ratings</h2>
                     <p class="lead mt-1">Click the stars to edit your rating</p>
 
-                    <div id="recommended-books">
-                        <div class="container">
-                            <div class="row mb-2 new-recommendation">
-                                <div class="col-2">
-                                    <img
-                                        src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" />
-                                </div>
+                    <div class="container" id="prev-rated-books">
 
-                                <div class="col text-left ml-1">
-                                    <div>
-                                        <b>Name</b> goes here
-                                        <br />
-                                        <b>Description: </b>Box Set containing Harry Potter and the Sorcerer's Stone,
-                                        Harry Potter and the Chamber Of Secrets, Harry Potter and the Prisoner of
-                                        Azkaban, Harry Potter and the Goblet Of Fire, and Harry Potter and the Order of
-                                        the Phoenix!
-                                    </div>
-                                    <br />
-                                    <div class="rating">
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-2 new-recommendation">
-                                <div class="col-2">
-                                    <img
-                                        src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" />
-                                </div>
-
-                                <div class="col text-left ml-1">
-                                    <div>
-                                        <b>Name</b> goes here
-                                        <br />
-                                        <b>Description: </b>Box Set containing Harry Potter and the Sorcerer's Stone,
-                                        Harry Potter and the Chamber Of Secrets, Harry Potter and the Prisoner of
-                                        Azkaban, Harry Potter and the Goblet Of Fire, and Harry Potter and the Order of
-                                        the Phoenix!
-                                    </div>
-                                    <br />
-                                    <div class="rating">
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-2 new-recommendation">
-                                <div class="col-2">
-                                    <img
-                                        src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" />
-                                </div>
-
-                                <div class="col text-left ml-1">
-                                    <div>
-                                        <b>Name</b> goes here
-                                        <br />
-                                        <b>Description: </b>Box Set containing Harry Potter and the Sorcerer's Stone,
-                                        Harry Potter and the Chamber Of Secrets, Harry Potter and the Prisoner of
-                                        Azkaban, Harry Potter and the Goblet Of Fire, and Harry Potter and the Order of
-                                        the Phoenix!
-                                    </div>
-                                    <br />
-                                    <div class="rating">
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row mb-2 new-recommendation">
-                                <div class="col-2">
-                                    <img
-                                        src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" />
-                                </div>
-
-                                <div class="col text-left ml-1">
-                                    <div>
-                                        <b>Name</b> goes here
-                                        <br />
-                                        <b>Description: </b>Box Set containing Harry Potter and the Sorcerer's Stone,
-                                        Harry Potter and the Chamber Of Secrets, Harry Potter and the Prisoner of
-                                        Azkaban, Harry Potter and the Goblet Of Fire, and Harry Potter and the Order of
-                                        the Phoenix!
-                                    </div>
-                                    <br />
-                                    <div class="rating">
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                        <img src="/static/images/whitestar.png" class="star" />
-                                    </div>
-                                </div>
-                            </div>
-
-                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div class="row">
-
+    <!-- Login Dialog Form -->
+    <div class="modal fade" id="modalLoginForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header text-center">
+                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body mx-3">
+                    <div class="md-form mb-5">
+                        <i class="fas fa-envelope prefix grey-text"></i>
+                        <label data-error="wrong" data-success="right" for="login-form-number">Your User Id</label>
+                        <input type="numeric" id="user-id-input" class="form-control validate">
+                    </div>
+                </div>
+                <div class="modal-footer d-flex justify-content-center">
+                    <button class="btn btn-default" id="modal-login-button">Login</button>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="static/jquery/jquery.slim.min.js"></script>
-    <script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <div class="row mb-2 new-recommendation" id="recommended-book-widget">
+        <div class="col-2">
+            <img src="https://s.gr-assets.com/assets/nophoto/book/111x148-bcc042a9c91a29c1d680899eff700a03.png" class="book-image"/>
+        </div>
+        
+        <div class="col text-left ml-1">
+            <div>
+                <b>Title</b> <span class="book-title"></span>
+                <br />
+                <b>Description: </b><span class="book-desc"></span>
+            </div>
+            <br /><br />
 
+            <button type="button" class="remove-rating btn btn-light">Remote Rating</button>
+            
+            <div class="rating">
+                <img src="/static/images/whitestar.png" class="star" id="star-1"/>
+                <img src="/static/images/whitestar.png" class="star" id="star-2"/>
+                <img src="/static/images/whitestar.png" class="star" id="star-3"/>
+                <img src="/static/images/whitestar.png" class="star" id="star-4"/>
+                <img src="/static/images/whitestar.png" class="star" id="star-5"/>
+            </div>
+        </div>
+    </div>
+
+    <script src="static/jquery/jquery.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="static/main.js"></script>
 </body>
 
 </html>

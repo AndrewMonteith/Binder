@@ -10,6 +10,16 @@ def create_meand_df(ratings, key_id):
     return means.join(counts)
 
 
+def remove_meand_df_entry(df, index, old_value):
+    row = df.loc[index]
+
+    new_n = row["n"] + 1
+    new_mean = (row["n"] * row["value"] - old_value) / new_n
+
+    df.at[index, "n"] = new_n
+    df.at[index, "value"] = new_mean
+
+
 def update_meand_df(df, index, value):
     row = df.loc[index]
 
@@ -18,6 +28,8 @@ def update_meand_df(df, index, value):
 
     df.at[index, "n"] = new_n
     df.at[index, "value"] = new_mean
+
+    return new_mean
 
 
 def count_rows(dataframe):

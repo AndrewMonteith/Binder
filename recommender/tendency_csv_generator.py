@@ -7,7 +7,7 @@
 """
 
 import pandas as pd
-from recommender.pandas_helpers import create_meand_df
+from pandas_helpers import create_meand_df
 
 ratings = pd.read_csv("Dataset/ratings.csv")
 
@@ -26,9 +26,9 @@ def precompute_user_tendencies():
 
         tendency = (joined["rating"] - joined["value"]).sum() / len(book_ratings.index)
 
-        tendencies[user_id] = tendency
+        tendencies[user_id] = [len(joined.index), tendency]
 
-    df = pd.DatFrame(list(tendencies.items()), columns=["user_id", "tendency"]).set_index("user_id")
+    df = pd.DataFrame(list(tendencies.items()), columns=["user_id", "n", "value"]).set_index("user_id")
     df.to_csv("user_tendencies.csv")
 
 
@@ -43,9 +43,9 @@ def precompute_book_tendencies():
 
         tendency = (joined["rating"] - joined["value"]).sum() / len(user_ratings.index)
 
-        tendencies[book_id] = tendency
+        tendencies[book_id] = [len(joined.index), tendency]
 
-    df = pd.DataFrame(list(tendencies.items()), columns=["book_id", "tendency"]).set_index("book_id")
+    df = pd.DataFrame(list(tendencies.items()), columns=["book_id", "n", "value"]).set_index("book_id")
     df.to_csv("book_tendencies.csv")
 
 

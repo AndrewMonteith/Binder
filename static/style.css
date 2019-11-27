@@ -8,6 +8,12 @@
     right: 0;
 }
 
+.remove-rating {
+    position: absolute;
+    bottom: -5px;
+    right: 160px;
+}
+
 #recommended-books {
     max-height: 460px;
     overflow-y: scroll;
