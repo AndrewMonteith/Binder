@@ -14,39 +14,41 @@ ratings = pd.read_csv("Dataset/ratings.csv")
 book_mean_dataframe = create_meand_df(ratings, "book_id")
 user_mean_dataframe = create_meand_df(ratings, "user_id")
 
-
 def precompute_user_tendencies():
     r = ratings.set_index("user_id")
     r.sort_index()
 
-    tendencies = {}
+    tendencies = []
+
     for user_id in user_mean_dataframe.index.unique():
         book_ratings = r.loc[user_id].set_index("book_id")
         joined = book_ratings.join(book_mean_dataframe["value"])
 
         tendency = (joined["rating"] - joined["value"]).sum() / len(book_ratings.index)
 
-        tendencies[user_id] = [len(joined.index), tendency]
+        tendencies.append([user_id, len(joined.index), tendency])
 
-    df = pd.DataFrame(list(tendencies.items()), columns=["user_id", "n", "value"]).set_index("user_id")
-    df.to_csv("user_tendencies.csv")
+    df = pd.DataFrame.from_records(tendencies)
+    df.columns = ["user_id", "n", "value"]
+    df.set_index("user_id").to_csv("Dataset/user_tendencies.csv")
 
 
 def precompute_book_tendencies():
     r = ratings.set_index("book_id")
     r.sort_index()
 
-    tendencies = {}
+    tendencies = []
     for book_id in book_mean_dataframe.index.unique():
         user_ratings = r.loc[book_id].set_index("user_id")
         joined = user_ratings.join(user_mean_dataframe["value"])
 
         tendency = (joined["rating"] - joined["value"]).sum() / len(user_ratings.index)
 
-        tendencies[book_id] = [len(joined.index), tendency]
+        tendencies.append([book_id, len(joined.index), tendency])
 
-    df = pd.DataFrame(list(tendencies.items()), columns=["book_id", "n", "value"]).set_index("book_id")
-    df.to_csv("book_tendencies.csv")
+    df = pd.DataFrame.from_records(tendencies)
+    df.columns = ["book_id", "n", "value"]
+    df.set_index("book_id").to_csv("Dataset/book_tendencies.csv")
 
 
 precompute_user_tendencies()

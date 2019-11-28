@@ -14,7 +14,8 @@
     right: 160px;
 }
 
-#recommended-books {
-    max-height: 460px;
+#recommended-books, #prev-rated-books {
+    border: 2px solid black;
+    max-height: 650px;
     overflow-y: scroll;
 }

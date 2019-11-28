@@ -25,6 +25,11 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ml-auto" id="navbarList">
+                    <li class="nav-item active d-flex align-items-center" id="nav-page-lang">
+                        <img class="nav-list" id="flag-img" href="#" src="/static/images/ENG.png" />
+                        <span class="nav-link" id="page-lang">ENG</span>
+                    </li>
+
                     <li class="nav-item active">
                         <a class="nav-link" id="register" href="#">
                             Register
@@ -50,16 +55,20 @@
     <div class="container mb-2">
         <div class="row text-center">
             <div class="col-lg-12 text-center overflow-hidden" id="recommend-book">
-                <h2 class="mt-2">Find books you'd never expect to like!</h2>
-                <p class="lead mt-1">We think you'd like these 3 books</p>
+                <h2 class="mt-2" id="welcome-msg-1">Find books you'd never expect to like!</h2>
+                <p class="lead mt-1" id="welcome-msg-2" >We think you'd like these 3 books</p>
 
                 <div class="container" id="recommended-books">
                 </div>
 
                 <div>
-                    <h2 class="mt-2">Remove or edit previous ratings</h2>
-                    <p class="lead mt-1">Click the stars to edit your rating</p>
+                    <h2 class="mt-2" id="edit-msg-1">Remove or edit previous ratings</h2>
+                    <p class="lead mt-1" id="edit-msg-2">Click the stars to edit your rating</p>
 
+                    <div id="search-prev-rated-books" class="float-right">
+                        <label id="search-prompt">Filter by name:</label>
+                        <input type="text" id="search-query" />
+                    </div>
                     <div class="container" id="prev-rated-books">
 
                     </div>
@@ -74,7 +83,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header text-center">
-                    <h4 class="modal-title w-100 font-weight-bold">Sign in</h4>
+                    <h4 class="modal-title w-100 font-weight-bold" id="modal-sign-in">Sign in</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -82,7 +91,7 @@
                 <div class="modal-body mx-3">
                     <div class="md-form mb-5">
                         <i class="fas fa-envelope prefix grey-text"></i>
-                        <label data-error="wrong" data-success="right" for="login-form-number">Your User Id</label>
+                        <label data-error="wrong" id="modal-signin-prompt" data-success="right" for="login-form-number">Your User Id</label>
                         <input type="numeric" id="user-id-input" class="form-control validate">
                     </div>
                 </div>
@@ -101,13 +110,15 @@
         
         <div class="col text-left ml-1">
             <div>
-                <b>Title</b> <span class="book-title"></span>
+                <b id="book-card-title-label">Title:</b> <span class="book-title"></span>
                 <br />
-                <b>Description: </b><span class="book-desc"></span>
+                <b id="book-card-genre-label">Genre:</b> <span class="book-genre"></span>
+                <br />
+                <b id="book-card-desc-label">Description: </b><span class="book-desc"></span>
             </div>
             <br /><br />
 
-            <button type="button" class="remove-rating btn btn-light">Remote Rating</button>
+            <button type="button" class="remove-rating btn btn-light">Remove Rating</button>
             
             <div class="rating">
                 <img src="/static/images/whitestar.png" class="star" id="star-1"/>
