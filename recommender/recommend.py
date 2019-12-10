@@ -34,7 +34,7 @@ def compute_predicted_values(user_id):
         rated_books.add(row['book_id'])
 
     # b chooses how much user means influence our predictions
-    b = 0.8
+    b = 0.1
     is_ut_pos = user_tendency > 0
 
     for book_id in book_tendencies.index.unique():
@@ -133,3 +133,7 @@ def change_user_rating(user_id, book_id, rating):
 
 def get_rated_books(user_id):
     return ratings[ratings['user_id'] == user_id]
+
+
+def does_user_exist(user_id):
+    return user_id in ratings['user_id'].values

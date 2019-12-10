@@ -17,7 +17,8 @@ const TEXTS = {
         "book-card-desc-label": "Description:",
         "loggedIn": "You are logged in as:",
         "modal-sign-in": "Sign in",
-        "modal-signin-prompt": "Your User Id:"
+        "modal-signin-prompt": "Your User Id:",
+        "modal-login-buton": "Login"
     },
     "ESP": {
         "welcome-msg-1": "Encuentra libros que nunca esperarías gustar",
@@ -72,7 +73,6 @@ function highlightStars(widget, rating, active) {
     const img = "/static/images/" + (active ? "fullstar.png" : "whitestar.png")
     const whitestar = "/static/images/whitestar.png"
     for (let ii = 0; ii < starImages.length; ++ii) {
-        console.log(img)
         starImages[ii].setAttribute("src", ii < rating ? img : whitestar)
     }
 }
@@ -152,8 +152,6 @@ function createBookWidget(book) {
 }
 
 function loadBooksInto(container, books) {
-    console.log("Got Books")
-    console.log(books)
     container.empty()
 
     books.map(createBookWidget)
@@ -183,7 +181,6 @@ function searchBarChanged() {
         const title = $(node).find(".book-title").text()
 
         const flexVal = title.includes(query) ? "flex" : "none"
-        console.log("foobar", flexVal)
 
         $(node).css("display", flexVal)
     })
@@ -242,8 +239,19 @@ $("#modal-login-button").click(() => {
         return
     }
 
-    loginWithId(loginId)
-    $("#modalLoginForm").modal('toggle')
+    $.ajax({
+        url: `/userexists/${loginId}`,
+        success: (userExists) => {
+            if (userExists.exists) {
+                loginWithId(loginId)
+                $("#modalLoginForm").modal('toggle')
+            } else {
+                alert("That user does not exist")
+            }
+
+        }
+    })
+
 })
 
 
