@@ -3,6 +3,7 @@ import pandas as pd
 from recommender.pandas_helpers import create_meand_df, update_meand_df, remove_meand_df_entry
 from recommender.tendency import compute_user_tendency, compute_book_tendency
 
+book_genres = pd.read_csv("recommender/Dataset/books.csv").set_index("book_id")["genre"]
 ratings = pd.read_csv("recommender/Dataset/ratings.csv")
 
 book_mean_dataframe = create_meand_df(ratings, "book_id")
@@ -34,7 +35,7 @@ def compute_predicted_values(user_id):
         rated_books.add(row['book_id'])
 
     # b chooses how much user means influence our predictions
-    b = 0.1
+    b = 0.3
     is_ut_pos = user_tendency > 0
 
     for book_id in book_tendencies.index.unique():
@@ -54,7 +55,7 @@ def compute_predicted_values(user_id):
             store(max(user_mean + book_tendency, book_mean + user_tendency))
 
         # both rate below the mean
-        elif not (is_ut_pos or is_bt_pos): # both rate below the mean
+        elif not (is_ut_pos or is_bt_pos):  # both rate below the mean
             store(min(user_mean + book_tendency, book_mean + user_tendency))
 
         # can interpolate between the 2 means
@@ -63,7 +64,8 @@ def compute_predicted_values(user_id):
             store(clamp(min(book_mean, user_mean), max(book_mean, user_mean), x))
 
         # tendencies don't compare well
-        elif (book_mean < user_mean and (not is_ut_pos) and is_bt_pos) or ((user_mean < book_mean) and is_ut_pos and (not is_bt_pos)):
+        elif (book_mean < user_mean and (not is_ut_pos) and is_bt_pos) or (
+                (user_mean < book_mean) and is_ut_pos and (not is_bt_pos)):
             store(b * book_mean + (1 - b) * user_mean)
 
         # small edge case
@@ -76,11 +78,10 @@ def compute_predicted_values(user_id):
 def recommend_n(user_id, n):
     predicted_vals = compute_predicted_values(user_id)
 
-    largest_10 = predicted_vals.nlargest(10, 'predicted')
+    largest = predicted_vals.nlargest(15, 'predicted')
 
-    return largest_10.sample(frac=1).head(n)
+    return largest.sample(frac=1).head(n)
 
-print(recommend_n(100, 3))
 
 def gen_new_user():
     new_id = len(user_tendencies) + 1
